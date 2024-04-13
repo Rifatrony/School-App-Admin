@@ -2,10 +2,11 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:srmm/app/data/app_constant.dart';
 
 class NetworkApiServices {
 
-  var baseurl = "http://192.168.0.138:4040/api/";
+  var baseurl = "http://192.168.0.155:4040/api/";
   Future<Response<dynamic>> postApi({ required String endpoint, required Map<String, dynamic> data, String? token,}) async {
 
     final dio = Dio();
@@ -41,7 +42,7 @@ class NetworkApiServices {
   Future<Response<dynamic>> putApi({required String endpoint, required Map<String, dynamic> data,}) async {
     final dio = Dio();
     SharedPreferences sharedPreference = await SharedPreferences.getInstance();
-    final token =sharedPreference.getString("TOKEN");
+    final token = sharedPreference.getString("TOKEN");
     final url = '$baseurl/$endpoint';
 
     try {
@@ -67,16 +68,17 @@ class NetworkApiServices {
     }
   }
 
-  Future<Response<dynamic>> getApi({required String endpoint, String? token,}) async {
+  Future<Response<dynamic>> getApi({required String endpoint,}) async {
     final dio = Dio();
 
     SharedPreferences sharedPreference = await SharedPreferences.getInstance();
+    var token = sharedPreference.getString(AppConstant.TOKEN);
 
     if (token == null) {
       token = sharedPreference.getString("TOKEN");
     }
 
-    final url = '$baseurl/$endpoint';
+    final url = '$baseurl$endpoint';
 
     try {
       final response = await dio.get(

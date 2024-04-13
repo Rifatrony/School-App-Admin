@@ -18,5 +18,16 @@ class RouteName {
   static const String termsAndCondition = "/terms-and-condition-screen";
   static const String settings = "/settings-screen";
   static const String updateProfile = "/update-profile-screen";
+  static const String classPage = "/class-screen";
+  static const String department = "/department-screen";
+  static const String subject = "/subject-screen";
+  static const String notice = "/notice-screen";
+  static const String income = "/notice-screen";
+  static const String cost = "/notice-screen";
+  static const String boding = "/boding-screen";
+  static const String routine = "/routine-screen";
+  static const String examSchedule = "/exam-schedule-screen";
+  static const String result = "/result-screen";
+  static const String about = "/about-screen";
 
 }

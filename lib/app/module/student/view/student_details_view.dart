@@ -13,6 +13,12 @@ class StudentDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final Map<String, dynamic> args = Get.arguments;
+    final String id = args['id'];
+
+    print("Received ID is ==============> $id");
+
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(

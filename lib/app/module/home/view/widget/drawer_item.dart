@@ -8,9 +8,9 @@ class DrawerItem extends StatelessWidget {
 
   final VoidCallback onPress;
   final String title;
-  final IconData icon;
+  final String image;
 
-  const DrawerItem({super.key, required this.onPress, required this.title, required this.icon});
+  const DrawerItem({super.key, required this.onPress, required this.title, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class DrawerItem extends StatelessWidget {
         width: 20.w,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColor.whiteText,
+          color: AppColor.whiteText.withOpacity(0.5),
         ),
         child: Icon(
           Icons.arrow_forward_ios,
@@ -33,13 +33,15 @@ class DrawerItem extends StatelessWidget {
       leading: Container(
         height: 35.h,
         width: 35.w,
+        padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColor.card3,
+          color: AppColor.whiteText.withOpacity(0.5),
         ),
-        child: Icon(
-          icon,
-          color: Colors.white,
+        child: Image.asset(
+          image,
+          height: 20,
+          width: 20,
         ),
       ),
     );

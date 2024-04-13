@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:srmm/app/data/app_image.dart';
 import 'package:srmm/app/module/home/view/widget/custom_drawer.dart';
+import 'package:srmm/app/module/home/view/widget/home_card_item.dart';
+import 'package:srmm/app/module/home/view/widget/home_card_item2.dart';
 import 'package:srmm/app/route/routes.dart';
 import 'package:srmm/app/utils/app_color.dart';
 
@@ -27,22 +30,26 @@ class HomeView extends StatelessWidget {
         backgroundColor: AppColor.backgroundColor,
         surfaceTintColor: Colors.transparent,
         // automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () async {
-
-              // Get.offAllNamed(RouteName.login);
-            },
-            icon: Icon(Icons.logout),
-          )
-        ],
-        title: Text("Dashboard"),
+        // actions: [
+        //   IconButton(
+        //     onPressed: () async {
+        //
+        //       // Get.offAllNamed(RouteName.login);
+        //     },
+        //     icon: Icon(Icons.logout),
+        //   )
+        // ],
+        title: const Text("School App (Admin)",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
       ),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
+        child: ListView(
           children: [
 
             Container(
@@ -63,11 +70,11 @@ class HomeView extends StatelessWidget {
                   },
                   title: 'Students',
                   total: 158,
-                  icon: Icons.school,
-                  cardColor: AppColor.card10,
+                  image: AppImage.studentIcon,
+                  cardColor: AppColor.card,
                 ),
 
-                SizedBox(width: 10.w,),
+                SizedBox(width: 8.w,),
 
                 HomeItemCard(
                   onPress: (){
@@ -75,66 +82,197 @@ class HomeView extends StatelessWidget {
                   },
                   title: 'Teachers',
                   total: 16,
-                  icon: Icons.person,
-                  cardColor: AppColor.card7,
+                  image: AppImage.teacherIcon,
+                  cardColor: AppColor.card,
                 ),
-              ],
-            ),
 
-            SizedBox(height: 10.w,),
+                SizedBox(width: 8.w,),
 
-            Row(
-              children: [
                 HomeItemCard(
                   onPress: (){
 
                   },
-                  title: 'Fees (Today)',
+                  title: 'Fees',
                   total: 5700,
-                  icon: Icons.school,
-                  cardColor: AppColor.card8,
+                  image: AppImage.feesIcon,
+                  cardColor: AppColor.card,
                 ),
 
-                SizedBox(width: 10.w,),
+                SizedBox(width: 8.w,),
 
                 HomeItemCard(
                   onPress: (){
 
                   },
-                  title: 'Fees (Monthly)',
-                  total: 34650,
-                  icon: Icons.school,
-                  cardColor: AppColor.card4,
+                  title: 'Salary',
+                  total: 158,
+                  image: AppImage.salaryIcon,
+                  cardColor: AppColor.card,
                 ),
               ],
             ),
 
-            SizedBox(height: 10.w,),
+            SizedBox(height: 8.w,),
 
             Row(
               children: [
+
                 HomeItemCard(
                   onPress: (){
-
+                    Get.toNamed(RouteName.classPage);
                   },
-                  title: 'School',
-                  total: 158,
-                  icon: Icons.school,
-                  cardColor: AppColor.card9,
+                  title: 'Class',
+                  total: 10,
+                  image: AppImage.classIcon,
+                  cardColor: AppColor.card,
                 ),
 
-                SizedBox(width: 10.w,),
+                SizedBox(width: 8.w,),
+
+                HomeItemCard(
+                  onPress: (){
+                    Get.toNamed(RouteName.department);
+                  },
+                  title: 'Dept.',
+                  total: 5,
+                  image: AppImage.departmentIcon,
+                  cardColor: AppColor.card,
+                ),
+
+                SizedBox(width: 8.w,),
+
+                HomeItemCard(
+                  onPress: (){
+                    Get.toNamed(RouteName.subject);
+                  },
+                  title: 'Subject',
+                  total: 16,
+                  image: AppImage.bodingIcon,
+                  cardColor: AppColor.card,
+                ),
+
+                SizedBox(width: 8.w,),
+
+                HomeItemCard(
+                  onPress: (){
+                    Get.toNamed(RouteName.notice);
+                  },
+                  title: 'Notice',
+                  total: 158,
+                  image: AppImage.noticeIcon,
+                  cardColor: AppColor.card,
+                ),
+
+              ],
+            ),
+
+            SizedBox(height: 8.w,),
+
+            Row(
+              children: [
 
                 HomeItemCard(
                   onPress: (){
 
                   },
-                  title: 'School',
+                  title: 'Income',
+                  total: 34650,
+                  image: AppImage.incomeIcon,
+                  cardColor: AppColor.card,
+                ),
+
+                SizedBox(width: 8.w,),
+                HomeItemCard(
+                  onPress: (){
+
+                  },
+                  title: 'Cost',
                   total: 158,
-                  icon: Icons.school,
-                  cardColor: AppColor.card5,
+                  image: AppImage.costIcon,
+                  cardColor: AppColor.card,
+                ),
+
+                SizedBox(width: 8.w,),
+
+                HomeItemCard(
+                  onPress: (){
+
+                  },
+                  title: 'Boding',
+                  total: 158,
+                  image: AppImage.bodingIcon,
+                  cardColor: AppColor.card,
+                ),
+
+
+
+              ],
+            ),
+
+
+
+            SizedBox(height: 8.w,),
+
+            Row(
+              children: [
+
+                HomeItemCard2(
+                  onPress: (){
+
+                  },
+                  title: 'Routine',
+                  image: AppImage.routineIcon,
+                  cardColor: AppColor.card,
+                ),
+
+                SizedBox(width: 8.w,),
+
+                HomeItemCard2(
+                  onPress: (){
+
+                  },
+                  title: 'Exam',
+                  image: AppImage.examIcon,
+                  cardColor: AppColor.whiteText,
+                ),
+                SizedBox(width: 8.w,),
+
+
+                HomeItemCard2(
+                  onPress: (){
+
+                  },
+                  title: 'Result',
+                  image: AppImage.resultIcon,
+                  cardColor: AppColor.card,
+                ),
+
+                SizedBox(width: 8.w,),
+
+
+                HomeItemCard2(
+                  onPress: (){
+
+                  },
+                  title: 'About',
+                  image: AppImage.aboutIcon,
+                  cardColor: AppColor.card,
                 ),
               ],
+            ),
+
+            Container(
+              height: 200,
+              color: Colors.red,
+              margin: EdgeInsets.only(top: 16.h),
+              child: Center(child: Text("Show cost and income in line graph")),
+            ),
+
+            Container(
+              height: 200,
+              color: Colors.red,
+              margin: EdgeInsets.only(top: 16.h),
+              child: Center(child: Text("Show result in line graph")),
             ),
 
           ],
@@ -145,56 +283,4 @@ class HomeView extends StatelessWidget {
 
 }
 
-class HomeItemCard extends StatelessWidget {
 
-  final VoidCallback onPress;
-  final String title;
-  final int total;
-  final IconData icon;
-  final Color? cardColor;
-
-  const HomeItemCard({
-    super.key, required this.title, required this.total, required this.icon, required this.onPress, this.cardColor = Colors.red,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onPress,
-        child: Container(
-          height: 80,
-          decoration: BoxDecoration(
-            color: cardColor,
-            borderRadius: BorderRadius.circular(16.r),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  BigText(
-                    text: title,
-                    fontColor: AppColor.whiteText,
-                  ),
-                  BoldText(
-                    text: total.toString(),
-                    fontColor: AppColor.whiteText,
-                  ),
-                ],
-              ),
-
-              Icon(
-                  icon,
-                  size: 40,
-                  color: Colors.black.withOpacity(0.4),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

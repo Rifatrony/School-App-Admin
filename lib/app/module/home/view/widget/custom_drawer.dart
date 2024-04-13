@@ -9,6 +9,7 @@ import 'package:srmm/app/widget/text/bold_text.dart';
 import 'package:srmm/app/widget/text/small_text.dart';
 
 import '../../../../data/app_constant.dart';
+import '../../../../data/app_image.dart';
 import '../../../../widget/button/custom_button.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -53,7 +54,7 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.pop(context);
               },
               title: "Home",
-              icon: Icons.home_rounded,
+              image: AppImage.homeIcon,
             ),
 
             Divider(
@@ -67,19 +68,19 @@ class CustomDrawer extends StatelessWidget {
                 // Get.back();
                 Get.toNamed(RouteName.viewStudent);
               },
-              title: "View Students",
-              icon: Icons.home_rounded,
+              title: "Students",
+              image: AppImage.studentIcon,
             ),
 
-            DrawerItem(
-              onPress: (){
-                Navigator.pop(context);
-                // Get.back();
-                Get.toNamed(RouteName.addStudent);
-              },
-              title: "Add Students",
-              icon: Icons.home_rounded,
-            ),
+            // DrawerItem(
+            //   onPress: (){
+            //     Navigator.pop(context);
+            //     // Get.back();
+            //     Get.toNamed(RouteName.addStudent);
+            //   },
+            //   title: "Add Students",
+            //   icon: Icons.home_rounded,
+            // ),
 
 
             DrawerItem(
@@ -88,7 +89,7 @@ class CustomDrawer extends StatelessWidget {
                 // Get.toNamed(RouteName.viewStudent);
               },
               title: "Student Fees",
-              icon: Icons.home_rounded,
+              image: AppImage.feesIcon,
             ),
 
             Divider(
@@ -101,18 +102,18 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Get.toNamed(RouteName.viewTeacher);
               },
-              title: "View Teacher",
-              icon: Icons.home_rounded,
+              title: "Teacher",
+              image: AppImage.teacherIcon,
             ),
 
-            DrawerItem(
-              onPress: (){
-                Navigator.pop(context);
-                Get.toNamed(RouteName.addTeacher);
-              },
-              title: "Add Teacher",
-              icon: Icons.home_rounded,
-            ),
+            // DrawerItem(
+            //   onPress: (){
+            //     Navigator.pop(context);
+            //     Get.toNamed(RouteName.addTeacher);
+            //   },
+            //   title: "Add Teacher",
+            //   icon: Icons.home_rounded,
+            // ),
 
             DrawerItem(
               onPress: (){
@@ -120,7 +121,7 @@ class CustomDrawer extends StatelessWidget {
                 // Get.toNamed(RouteName.viewStudent);
               },
               title: "Salary",
-              icon: Icons.home_rounded,
+              image: AppImage.salaryIcon,
             ),
 
             Divider(
@@ -128,23 +129,32 @@ class CustomDrawer extends StatelessWidget {
               color: Colors.grey.shade300,
             ),
 
+            // DrawerItem(
+            //   onPress: (){
+            //     Navigator.pop(context);
+            //     // Get.toNamed(RouteName.viewStudent);
+            //   },
+            //   title: "View Cost",
+            //   icon: Icons.home_rounded,
+            // ),
+
+
             DrawerItem(
               onPress: (){
                 Navigator.pop(context);
                 // Get.toNamed(RouteName.viewStudent);
               },
-              title: "View Cost",
-              icon: Icons.home_rounded,
+              title: "Cost",
+              image: AppImage.costIcon,
             ),
 
-
             DrawerItem(
               onPress: (){
                 Navigator.pop(context);
                 // Get.toNamed(RouteName.viewStudent);
               },
-              title: "Add Cost",
-              icon: Icons.home_rounded,
+              title: "Income",
+              image: AppImage.costIcon,
             ),
 
             Divider(
@@ -221,7 +231,7 @@ class CustomDrawer extends StatelessWidget {
                 // Get.toNamed(RouteName.viewStudent);
               },
               title: "Logout",
-              icon: Icons.home_rounded,
+              image: AppImage.logoutIcon,
             ),
 
             
