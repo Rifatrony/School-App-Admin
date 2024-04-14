@@ -36,7 +36,12 @@ class StudentController extends GetxController{
     isLoading.value = true;
 
     try{
-      var response = await networkServices.getApi(endpoint: 'student/view/2024');
+      var year = selectedYear.value; // Get the selected year from the dropdown
+      if (year == null) {
+        year = DateTime.now().year; // If no year is selected, use the current year
+      }
+
+      var response = await networkServices.getApi(endpoint: 'student/view/$year');
       if(response.statusCode == 200){
         final responseData = response.data;
 

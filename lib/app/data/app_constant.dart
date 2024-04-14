@@ -7,6 +7,7 @@ class AppConstant {
   static String date = "Date";
   static String motherName = "Mother Name";
   static String className = "Class";
+  static String sectionName = "Section";
   static String department = "Department";
 
   static String teacherName = "Teacher Name";

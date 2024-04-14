@@ -23,10 +23,10 @@ class CustomTextForm extends StatelessWidget {
             ),
             contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.r),
+                borderRadius: BorderRadius.circular(8.r),
                 borderSide: BorderSide(
                   color: Colors.black,
                 ),

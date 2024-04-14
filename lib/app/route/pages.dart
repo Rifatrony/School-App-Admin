@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:srmm/app/module/about/bindings/about_bindings.dart';
+import 'package:srmm/app/module/about/view/about_view.dart';
 import 'package:srmm/app/module/classes/bindings/class_binding.dart';
 import 'package:srmm/app/module/classes/view/classes_view.dart';
 import 'package:srmm/app/module/department/bindings/department_bindings.dart';
@@ -97,6 +99,12 @@ class AppPages {
       name: RouteName.notice,
       page: () => const NoticeView(),
       binding: NoticeBindings(),
+    ),
+
+    GetPage(
+      name: RouteName.about,
+      page: () => const AboutView(),
+      binding: AboutBindings(),
     ),
 
 
