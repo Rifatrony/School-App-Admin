@@ -48,7 +48,7 @@ class AddTeacherView extends StatelessWidget {
 
             CustomTextForm(
               controller: controller.addressController,
-              hintText: AppConstant.teacherAddress,
+              hintText: AppConstant.address,
               keyBoardType: TextInputType.text,
             ),
 

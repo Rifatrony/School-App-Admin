@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:srmm/app/data/app_constant.dart';
 import 'package:srmm/app/utils/custom_message.dart';
 
-import '../../../api/network_api_servies.dart';
+import '../../../api/network_api_services.dart';
 import '../../../route/routes.dart';
 
 class LoginController extends GetxController{

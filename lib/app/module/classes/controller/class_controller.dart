@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:srmm/app/api/network_api_servies.dart';
+import 'package:srmm/app/api/network_api_services.dart';
 
 import '../model/class_model.dart';
 
@@ -17,16 +17,11 @@ class ClassController extends GetxController{
   final networkServices = NetworkApiServices();
 
   final isLoading = false.obs;
-  final classList = List<Data>.empty().obs;
-  final sectionList = List<Data>.empty().obs;
+  final classList = List<AllClass>.empty().obs;
 
-  RxInt selectedClassId = (-1).obs;
+
+  final selectedClassId = "".obs;
   var selectedClass = RxString('');
-
-  // Function to update the selected class ID
-  // void updateSelectedClassId(String id) {
-  //   selectedClassId.value = id;
-  // }
 
   fetchClass() async {
     isLoading.value = true;
@@ -36,34 +31,9 @@ class ClassController extends GetxController{
       if(response.statusCode == 200){
         final responseData = response.data;
 
-        final allClassModel = allClassModelFromJson(jsonEncode(responseData));
+        final allClassModel = classesModelFromJson(jsonEncode(responseData));
 
-        classList.value = allClassModel.data ?? [];
-        isLoading.value = false;
-      }
-      else{
-        print(response.statusCode.toString());
-        isLoading.value = false;
-      }
-    } catch(e, stackTrace){
-      log(e.toString());
-      isLoading.value = false;
-      print(stackTrace);
-    }
-  }
-
-
-  fetchSection() async {
-    isLoading.value = true;
-
-    try{
-      var response = await networkServices.getApi(endpoint: 'section/view-all');
-      if(response.statusCode == 200){
-        final responseData = response.data;
-
-        final allClassModel = allClassModelFromJson(jsonEncode(responseData));
-
-        classList.value = allClassModel.data ?? [];
+        classList.value = allClassModel.allClass ?? [];
         isLoading.value = false;
       }
       else{

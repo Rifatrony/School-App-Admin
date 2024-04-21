@@ -1,53 +1,53 @@
 // To parse this JSON data, do
 //
-//     final allClassModel = allClassModelFromJson(jsonString);
+//     final classesModel = classesModelFromJson(jsonString);
 
 import 'dart:convert';
 
-AllClassModel allClassModelFromJson(String str) => AllClassModel.fromJson(json.decode(str));
+ClassesModel classesModelFromJson(String str) => ClassesModel.fromJson(json.decode(str));
 
-String allClassModelToJson(AllClassModel data) => json.encode(data.toJson());
+String classesModelToJson(ClassesModel data) => json.encode(data.toJson());
 
-class AllClassModel {
+class ClassesModel {
   String? message;
-  List<Data>? data;
+  List<AllClass>? allClass;
 
-  AllClassModel({
+  ClassesModel({
     this.message,
-    this.data,
+    this.allClass,
   });
 
-  factory AllClassModel.fromJson(Map<String, dynamic> json) => AllClassModel(
+  factory ClassesModel.fromJson(Map<String, dynamic> json) => ClassesModel(
     message: json["message"],
-    data: json["data"] == null ? [] : List<Data>.from(json["data"]!.map((x) => Data.fromJson(x))),
+    allClass: json["allClass"] == null ? [] : List<AllClass>.from(json["allClass"]!.map((x) => AllClass.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "allClass": allClass == null ? [] : List<dynamic>.from(allClass!.map((x) => x.toJson())),
   };
 }
 
-class Data {
+class AllClass {
+  int? classCode;
   String? id;
-  int? classId;
   String? name;
 
-  Data({
+  AllClass({
+    this.classCode,
     this.id,
-    this.classId,
     this.name,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["_id"],
-    classId: json["id"],
+  factory AllClass.fromJson(Map<String, dynamic> json) => AllClass(
+    classCode: json["class_code"],
+    id: json["id"],
     name: json["name"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "id": classId,
+    "class_code": classCode,
+    "id": id,
     "name": name,
   };
 }

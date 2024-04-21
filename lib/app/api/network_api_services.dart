@@ -7,16 +7,15 @@ import 'package:srmm/app/data/app_constant.dart';
 class NetworkApiServices {
 
   var baseurl = "http://192.168.0.155:4040/api/";
-  Future<Response<dynamic>> postApi({ required String endpoint, required Map<String, dynamic> data, String? token,}) async {
+  Future<Response<dynamic>> postApi({ required String endpoint, required Map<String, dynamic> data}) async {
 
     final dio = Dio();
     SharedPreferences sharedPreference = await SharedPreferences.getInstance();
-
-    if (token == null) {
-      token = sharedPreference.getString("TOKEN");
-    }
+    final token = sharedPreference.getString("TOKEN");
 
     final url = '$baseurl$endpoint';
+
+    print("URL IS ===========> R$url");
 
     try {
       final response = await dio.post(

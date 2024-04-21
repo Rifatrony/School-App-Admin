@@ -20,4 +20,5 @@ class AppColor {
   static Color blackText = const Color(0xff000000);
   static Color backgroundColor = const Color(0xffF6F6F8);
   static Color buttonColor1 = const Color(0xffFF3E6F);
+  static Color buttonColor2 = const Color(0xffB9D4DB);
 }

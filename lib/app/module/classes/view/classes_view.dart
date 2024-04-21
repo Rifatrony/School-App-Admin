@@ -35,7 +35,7 @@ class ClassView extends StatelessWidget {
             itemBuilder: (context, index){
               return GestureDetector(
                 onTap: (){
-                  print("Id is =====> ${controller.classList[index].classId.toString()}");
+                  print("Id is =====> ${controller.classList[index].id.toString()}");
                 },
                 child: Container(
                   // margin: EdgeInsets.only(bottom: 60.h),
