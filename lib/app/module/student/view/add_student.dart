@@ -90,7 +90,7 @@ class AddStudent extends StatelessWidget {
                                         });
                                       },
                                       hint: Text(
-                                        'Select Class',
+                                        'Select Class*',
                                         style: TextStyle(
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.normal,
@@ -154,7 +154,7 @@ class AddStudent extends StatelessWidget {
                                         // print('Selected Class ID: ${departmentController.selectedClassId.value}');
                                       },
                                       hint: Text(
-                                        'Select Dept.',
+                                        'Select Dept.*',
                                         style: TextStyle(
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.normal,
@@ -222,7 +222,7 @@ class AddStudent extends StatelessWidget {
                                     // print('Selected Class ID: ${sectionController.selectedClassId.value}');
                                   },
                                   hint: Text(
-                                    'Select Section',
+                                    'Select Section*',
                                     style: TextStyle(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.normal,

@@ -16,8 +16,11 @@ class ClassView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColor.backgroundColor,
-        title: const Text("Class"),
+        backgroundColor: Colors.blue,
+        title: const Text("Class", style: TextStyle(color: Colors.white),),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         surfaceTintColor: Colors.transparent,
       ),
       body: Padding(

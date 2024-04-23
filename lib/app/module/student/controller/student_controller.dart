@@ -93,6 +93,22 @@ class StudentController extends GetxController{
     }
   }
 
+  List<Student> filteredStudentList = [];
+
+  filterStudents(String query) {
+    // Clear previous filtered list
+    filteredStudentList.clear();
+
+    // If the query is empty, display all students
+    if (query.isEmpty) {
+      filteredStudentList.addAll(studentList);
+    } else {
+      // Filter students whose names contain the query string
+      filteredStudentList.addAll(studentList.where((student) =>
+          student.name.toString().toLowerCase().contains(query.toLowerCase())));
+    }
+  }
+
   Rx<DateTime> selectedDate = DateTime.now().obs;
 
   Future<void> selectDate(BuildContext context) async {
@@ -197,13 +213,13 @@ class StudentController extends GetxController{
         'enroll_date': formattedDate,
       };
 
-      print(data);
       try{
         var response = await networkServices.postApi(endpoint: "student/add/${classController.selectedClassId.value}", data: data);
         if(response.statusCode == 201){
           print("Success");
           CustomMessage.successMessage("Success", "New Student Added");
           isAddStudentLoading.value = false;
+          await fetchStudent();
         }
         else {
           print(response.statusCode.toString());

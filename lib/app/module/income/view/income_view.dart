@@ -18,63 +18,128 @@ class IncomeView extends StatelessWidget {
 
     final controller = Get.put(IncomeController());
 
+    onRefresh() async {
+      await Future.delayed(Duration(milliseconds: 1000), (){
+        controller.fetchIncome();
+      },);
+    }
+
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
         title: Text("Income"),
+        centerTitle: true,
         backgroundColor: AppColor.backgroundColor,
       ),
-      body: Obx(()=> controller.isLoading.value ? Center(child: CircularProgressIndicator()) :
-        ListView.builder(
-          itemCount: controller.incomeList.length,
-          itemBuilder: (context, index){
-            final income = controller.incomeList[index];
-            return Container(
-              padding: EdgeInsets.all(10.sp),
-              margin: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 12.w),
+      body: DefaultTabController(
+        length: 3,
+        child: Column(
+          children: [
+
+            Container(
+              height: 40.h,
+              padding: const EdgeInsets.all(6),
+              margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                color: AppColor.card8,
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(25.r),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(income.type ?? ""),
-                        Text(income.amount.toString() ?? ""),
-                      ],
-                    ),
+              child: TabBar(
+                labelColor: AppColor.blackText,
+                labelStyle: TextStyle(
+                    fontSize: 12.sp
+                ),
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                tabs: const [
+                  Tab(
+                    text: 'Today',
                   ),
-                  PopupMenuButton(
-                    surfaceTintColor: AppColor.card,
-                    onSelected: (value) {
-                      if (value == "edit") {
-                        log("Edit Item is : ${index + 1}");
-                      } else {
-                        // Do code for B
-                      }
-                    },
-                    itemBuilder: (context) {
-                      return const [
-                        PopupMenuItem(
-                          value: "edit",
-                          child: SmallText(text: "Edit"),
-                        ),
-                        PopupMenuItem(
-                          value: "delete",
-                          child: SmallText(text: "Delete"),
-                        ),
-                      ];
-                    },
+                  Tab(
+                    text: 'Monthly',
+                  ),
+                  Tab(
+                    text: 'Total',
                   ),
                 ],
+                isScrollable: false,
+                // onTap: handleTabChange,
               ),
-            );
-          },
+            ),
+
+            SizedBox(height: 16.h,),
+
+            Expanded(
+              child: TabBarView(
+                children: [
+                  Obx(()=> controller.isLoading.value ? Center(child: CircularProgressIndicator()) :
+                    RefreshIndicator(
+                      onRefresh: onRefresh,
+                      child: ListView.builder(
+                        itemCount: controller.incomeList.length,
+                        itemBuilder: (context, index){
+                          final income = controller.incomeList[index];
+                          return Container(
+                            padding: EdgeInsets.all(10.sp),
+                            margin: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 12.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.r),
+                              color: Colors.grey.shade200,
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      BoldText(text: "Income type: ${income.type ?? ""}"),
+                                      SizedBox(height: 4.h,),
+                                      Text("${income.amount.toString() ?? ""} Tk."),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuButton(
+                                  surfaceTintColor: AppColor.card,
+                                  onSelected: (value) {
+                                    if (value == "edit") {
+                                      log("Edit Item is : ${index + 1}");
+                                    } else {
+                                      // Do code for B
+                                    }
+                                  },
+                                  itemBuilder: (context) {
+                                    return const [
+                                      PopupMenuItem(
+                                        value: "edit",
+                                        child: SmallText(text: "Edit"),
+                                      ),
+                                      PopupMenuItem(
+                                        value: "delete",
+                                        child: SmallText(text: "Delete"),
+                                      ),
+                                    ];
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+
+                  Center(child: Text("Monthly Income")),
+                  Center(child: Text("Total Income")),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -115,10 +180,7 @@ class IncomeView extends StatelessWidget {
 
                 GestureDetector(
                   onTap: () async {
-                    Get.back();
-                    // SharedPreferences sp = await SharedPreferences.getInstance();
-                    // sp.remove(AppConstant.TOKEN);
-                    // Get.offAllNamed(RouteName.login);
+                    controller.addIncome(context);
                   },
                   child: Container(
                     // height: 40.h,
@@ -127,10 +189,12 @@ class IncomeView extends StatelessWidget {
                       color: AppColor.card3,
                       borderRadius: BorderRadius.circular(12.r),
                     ),
-                    child: Center(
-                      child: BoldText(
-                        text: "SAVE",
-                        fontColor: AppColor.whiteText,
+                    child: Obx(()=>
+                      Center(
+                        child: controller.isIncomeAddLoading.value ? Center(child: CircularProgressIndicator()) : BoldText(
+                          text: "SAVE",
+                          fontColor: AppColor.whiteText,
+                        ),
                       ),
                     ),
                   ),

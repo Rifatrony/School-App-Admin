@@ -14,18 +14,32 @@ class StudentPersonalInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.h),
+      padding: EdgeInsets.symmetric(vertical: 4.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BoldText(
             text: title,
-            fontSize: 12.sp,
+            fontSize: 13.sp,
           ),
-          SmallText(
-            text: value,
-            fontSize: 12.sp,
+
+          Expanded(
+            child: Text(
+              value,
+              textAlign: TextAlign.right,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 12.sp,
+              ),
+            ),
           ),
+          // SmallText(
+          //   text: value,
+          //   fontSize: 14.sp,
+          //
+          // ),
         ],
       ),
     );

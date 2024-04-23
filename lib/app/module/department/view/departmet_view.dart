@@ -15,6 +15,15 @@ class DepartmentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(DepartmentController());
+
+    onRefresh() async {
+      await Future.delayed(
+        Duration(milliseconds: 1000), (){
+          controller.fetchDepartment();
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
@@ -23,61 +32,73 @@ class DepartmentView extends StatelessWidget {
         backgroundColor: AppColor.backgroundColor,
       ),
       body: Obx(()=> controller.isLoading.value ? Center(child: CircularProgressIndicator()) :
-        ListView.builder(
-          itemCount: controller.departmentList.length,
-          itemBuilder: (context, index){
-            return Container(
-              margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h),
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.r),
-                color: AppColor.card4,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SmallText(text: "Department of"),
-                        BoldText(text: controller.departmentList[index].name ?? ""),
-                        // SmallText(text: controller.departmentList[index]. ?? ""),
-                      ],
+        RefreshIndicator(
+          onRefresh: onRefresh,
+          child: ListView.builder(
+            itemCount: controller.departmentList.length,
+            itemBuilder: (context, index){
+              return Container(
+                margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.r),
+                  color: AppColor.card,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const SmallText(text: "Department of"),
+                              SizedBox(width: 10.w,),
+                              BoldText(text: controller.departmentList[index].name ?? "",),
+                            ],
+                          ),
+
+                          SizedBox(height: 5.w,),
+
+                          SmallText(text: "Total Student: 1512"),
+                          // SmallText(text: controller.departmentList[index]. ?? ""),
+                        ],
+                      ),
                     ),
-                  ),
-                  PopupMenuButton(
-                    surfaceTintColor: Colors.white,
-                    onSelected: (value){
-                      if(value == "edit"){
-                        /// Do work for a
-                        log("Edit Item is : ${index + 1}");
-                        // controller.editATeacher(index);
-                      }
-                      else{
-                        /// Do code for B
-                      }
-                    },
-                    itemBuilder: (context){
-                      return [
-                        PopupMenuItem(
-                          value: "edit",
-                          child: SmallText(text: "Edit"),
-                        ),
+                    PopupMenuButton(
+                      surfaceTintColor: Colors.white,
+                      onSelected: (value){
+                        if(value == "edit"){
+                          /// Do work for a
+                          log("Edit Item is : ${index + 1}");
+                          // controller.editATeacher(index);
+                        }
+                        else{
+                          /// Do code for B
+                        }
+                      },
+                      itemBuilder: (context){
+                        return [
+                          PopupMenuItem(
+                            value: "edit",
+                            child: SmallText(text: "Edit"),
+                          ),
 
-                        PopupMenuItem(
-                          value: "delete",
-                          child: SmallText(text: "Delete"),
-                        ),
+                          PopupMenuItem(
+                            value: "delete",
+                            child: SmallText(text: "Delete"),
+                          ),
 
 
-                      ];
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
+                        ];
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

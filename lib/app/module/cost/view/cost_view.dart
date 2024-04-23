@@ -21,56 +21,111 @@ class CostView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColor.backgroundColor,
         title: Text("Cost"),
+        centerTitle: true,
       ),
-      body: Obx(()=> controller.isLoading.value ? Center(child: CircularProgressIndicator()) :
-        ListView.builder(
-          itemCount: controller.costList.length,
-          itemBuilder: (context, index){
-            final income = controller.costList[index];
-            return Container(
-              padding: EdgeInsets.all(10.sp),
-              margin: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 12.w),
+      body: DefaultTabController(
+        length: 3,
+        child: Column(
+          children: [
+            Container(
+              height: 40.h,
+              padding: const EdgeInsets.all(6),
+              margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                color: AppColor.card6,
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(25.r),
               ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(income.type ?? ""),
-                        Text(income.amount.toString() ?? ""),
-                      ],
-                    ),
+              child: TabBar(
+                labelColor: AppColor.blackText,
+                labelStyle: TextStyle(
+                  fontSize: 12.sp
+                ),
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                tabs: const [
+                  Tab(
+                    text: 'Today',
                   ),
-                  PopupMenuButton(
-                    surfaceTintColor: AppColor.card,
-                    onSelected: (value) {
-                      if (value == "edit") {
-                        log("Edit Item is : ${index + 1}");
-                      } else {
-                        // Do code for B
-                      }
-                    },
-                    itemBuilder: (context) {
-                      return const [
-                        PopupMenuItem(
-                          value: "edit",
-                          child: SmallText(text: "Edit"),
-                        ),
-                        PopupMenuItem(
-                          value: "delete",
-                          child: SmallText(text: "Delete"),
-                        ),
-                      ];
-                    },
+                  Tab(
+                    text: 'Monthly',
+                  ),
+                  Tab(
+                    text: 'Total',
                   ),
                 ],
+                isScrollable: false,
+                // onTap: handleTabChange,
               ),
-            );
-          },
+            ),
+
+            SizedBox(height: 16.h,),
+
+            Expanded(
+              child: TabBarView(
+                children: [
+                  Obx(()=> controller.isLoading.value ? Center(child: CircularProgressIndicator()) :
+                    ListView.builder(
+                      itemCount: controller.costList.length,
+                      itemBuilder: (context, index){
+                        final income = controller.costList[index];
+                        return Container(
+                          padding: EdgeInsets.all(10.sp),
+                          margin: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 12.w),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.r),
+                            color: Colors.redAccent,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(income.type ?? ""),
+                                    Text(income.amount.toString() ?? ""),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuButton(
+                                iconColor: Colors.white,
+                                surfaceTintColor: AppColor.card,
+                                onSelected: (value) {
+                                  if (value == "edit") {
+                                    log("Edit Item is : ${index + 1}");
+                                  } else {
+                                    // Do code for B
+                                  }
+                                },
+                                itemBuilder: (context) {
+                                  return const [
+                                    PopupMenuItem(
+                                      value: "edit",
+                                      child: SmallText(text: "Edit"),
+                                    ),
+                                    PopupMenuItem(
+                                      value: "delete",
+                                      child: SmallText(text: "Delete"),
+                                    ),
+                                  ];
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+              
+                  Center(child: Text("Monthly Cost")),
+                  Center(child: Text("Total Cost")),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -102,7 +157,7 @@ class CostView extends StatelessWidget {
                 CustomTextForm(
                   controller: controller.noteController,
                   hintText: "Note",
-                  keyBoardType: TextInputType.text,
+                  keyBoardType: TextInputType.name,
                   maxLine: 3,
                 ),
 
@@ -110,7 +165,8 @@ class CostView extends StatelessWidget {
 
                 GestureDetector(
                   onTap: () async {
-                    Get.back();
+                    // Get.back();
+                    controller.addCost(context);
                     // SharedPreferences sp = await SharedPreferences.getInstance();
                     // sp.remove(AppConstant.TOKEN);
                     // Get.offAllNamed(RouteName.login);
@@ -119,13 +175,16 @@ class CostView extends StatelessWidget {
                     // height: 40.h,
                     padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                     decoration: BoxDecoration(
-                      color: AppColor.card3,
+                      color: Colors.green,
                       borderRadius: BorderRadius.circular(12.r),
                     ),
-                    child: Center(
-                      child: BoldText(
-                        text: "SAVE",
-                        fontColor: AppColor.whiteText,
+                    child: Obx(()=>
+                      Center(
+                        child: controller.isCostAddLoading.value ? Center(child: CircularProgressIndicator()) : BoldText(
+                          text: "SAVE",
+                          fontSize: 12.sp,
+                          fontColor: AppColor.whiteText,
+                        ),
                       ),
                     ),
                   ),
@@ -140,7 +199,7 @@ class CostView extends StatelessWidget {
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: AppColor.card6,
+        backgroundColor: Colors.redAccent,
         shape: CircleBorder(),
       ),
     );

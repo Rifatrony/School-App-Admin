@@ -92,8 +92,8 @@ class NoticeView extends StatelessWidget {
                                     SizedBox(height: 4.h),
                                     Text(
                                       notice.message ?? "",
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
+                                      // maxLines: 2,
+                                      // overflow: TextOverflow.ellipsis,
                                       style: TextStyle(color: Colors.grey.shade600),
                                     ),
                                   ],
@@ -168,8 +168,8 @@ class NoticeView extends StatelessWidget {
                                     SizedBox(height: 4.h),
                                     Text(
                                       notice.message ?? "",
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
+                                      // maxLines: 2,
+                                      // overflow: TextOverflow.ellipsis,
                                       style: TextStyle(color: Colors.grey.shade600),
                                     ),
                                   ],

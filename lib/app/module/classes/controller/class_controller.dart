@@ -21,6 +21,7 @@ class ClassController extends GetxController{
 
 
   final selectedClassId = "".obs;
+  var filterClassId = "".obs;
   var selectedClass = RxString('');
 
   fetchClass() async {
@@ -45,6 +46,18 @@ class ClassController extends GetxController{
       isLoading.value = false;
       print(stackTrace);
     }
+  }
+
+  final selectedClassIndex = (-1).obs;
+
+  setClass(int index){
+    selectedClassIndex.value = index;
+  }
+
+  var selectedIndex = 0.obs; // Observable variable to store the selected index
+
+  void setSelectedIndex(int index) {
+    selectedIndex.value = index;
   }
 
   onRefresh() async {

@@ -38,7 +38,7 @@ class CustomButton extends StatelessWidget {
                 child: SmallText(
                   text: title,
                   fontSize: 14.sp,
-                  fontColor: AppColor.whiteText,
+                  fontColor: AppColor.blackText,
                 ),
               ),
       ),

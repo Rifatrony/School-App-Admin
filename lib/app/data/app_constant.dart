@@ -7,8 +7,8 @@ class AppConstant {
   static String birthCertificate = "Birth Certificate*";
   static String age = "Age*";
   static String fatherName = "Father Name*";
-  static String nid = "Father/Mother NID*";
-  static String number = "Father/Mother Number*";
+  static String nid = "Parents NID*";
+  static String number = "Number*";
   static String date = "Date*";
   static String motherName = "Mother Name*";
   static String className = "Class*";

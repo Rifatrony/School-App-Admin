@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (BuildContext context, Widget? child) {
         return GetMaterialApp(
-          title: 'Flutter Demo',
+          title: 'School App Admin',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
