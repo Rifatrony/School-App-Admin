@@ -19,7 +19,7 @@ class LoginController extends GetxController{
 
   final isLoading = false.obs;
 
-  final isVisible = false.obs;
+  final isVisible = true.obs;
 
 
   login() async {

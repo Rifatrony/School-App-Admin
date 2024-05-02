@@ -1,5 +1,6 @@
 class AppImage {
   static String homeIcon = "assets/icons/home.png";
+  static String profileIcon = "assets/icons/profile.png";
   static String studentIcon = "assets/icons/student.png";
   static String teacherIcon = "assets/icons/teacher.png";
   static String feesIcon = "assets/icons/fee.png";

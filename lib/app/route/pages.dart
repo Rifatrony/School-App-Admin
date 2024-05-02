@@ -7,6 +7,7 @@ import 'package:srmm/app/module/classes/bindings/class_binding.dart';
 import 'package:srmm/app/module/classes/view/classes_view.dart';
 import 'package:srmm/app/module/cost/bindings/cost_bindings.dart';
 import 'package:srmm/app/module/cost/view/cost_view.dart';
+import 'package:srmm/app/module/dashboard/bindings/dashboard_bindings.dart';
 import 'package:srmm/app/module/department/bindings/department_bindings.dart';
 import 'package:srmm/app/module/department/view/departmet_view.dart';
 import 'package:srmm/app/module/exam/bindings/exam_schedule_bindings.dart';
@@ -36,6 +37,7 @@ import 'package:srmm/app/module/teacher/view/add_teacher.dart';
 import 'package:srmm/app/module/teacher/view/teacher_view.dart';
 import 'package:srmm/app/route/routes.dart';
 
+import '../module/dashboard/view/dashboard_view.dart';
 import '../module/notice/bindings/notice_bindings.dart';
 import '../module/notice/view/add_notice_view.dart';
 import '../module/splash/bindings/splash_bindings.dart';
@@ -62,6 +64,12 @@ class AppPages {
       name: RouteName.home,
       page: () => const HomeView(),
       binding: HomeBindings(),
+    ),
+
+    GetPage(
+      name: RouteName.dashboard,
+      page: () => const DashboardView(),
+      binding: DashboardBindings(),
     ),
 
     GetPage(

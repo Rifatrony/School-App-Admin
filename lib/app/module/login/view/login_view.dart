@@ -12,6 +12,8 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final size = MediaQuery.of(context).size;
+
     var controller = Get.put(LoginController());
 
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: <SystemUiOverlay>[]);
@@ -55,130 +57,141 @@ class LoginView extends StatelessWidget {
             SizedBox(height: 30.h,),
 
             /// Email Text From Field
+
             Container(
-              height: 45.sp,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.r),
-                border: Border.all(
-                  width: 0.3,
-                  color: Colors.white
-                )
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 45.sp,
-                    width: 45.sp,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.email_outlined,
-                      size: 16,
-                    ),
+              // width: size.width * 0.70,
+              child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                controller: controller.emailController,
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  suffixIcon: Icon(Icons.email,
+                    color: Colors.white,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.r),
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      )
                   ),
 
-                  Expanded(
-                    child: SizedBox(
-                      height: 30.sp,
-                      child: TextFormField(
-                        controller: controller.emailController,
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Colors.white,
-                        ),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Email",
-                          hintStyle: TextStyle(
-                            fontSize: 14.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w300,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 8.sp),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.r),
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      )
+                  ),
+                ),
               ),
             ),
 
             SizedBox(height: 16.h,),
 
             /// Password Text From Field
-            Container(
-              height: 45.sp,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.r),
-                  border: Border.all(
-                      width: 0.3,
-                      color: Colors.white
-                  )
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 45.sp,
-                    width: 45.sp,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.lock_outline,
-                      size: 16,
-                    ),
-                  ),
-                  Expanded(
-                    child: SizedBox(
-                      height: 30.sp,
-                      child: Obx(()=>
-                        TextFormField(
-                          controller: controller.passwordController,
-                          obscureText: controller.isVisible.value,
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: Colors.white,
-                            letterSpacing: 3,
-                          ),
-                          decoration: InputDecoration(
 
-                            border: InputBorder.none,
-                            hintText: "Password",
-                            hintStyle: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 8.sp),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  GestureDetector(
+            Obx(()=>
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                controller: controller.passwordController,
+                obscureText: controller.isVisible.value,
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  suffixIcon: InkWell(
                     onTap: (){
                       controller.isVisible.value =! controller.isVisible.value;
                     },
-                    child: Obx(()=>
-                      Padding(
-                        padding: EdgeInsets.only(right: 15.w),
-                        child: Icon(
-                          controller.isVisible.value ? Icons.visibility : Icons.visibility_off,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                      ),
+                    child: Icon(
+                      controller.isVisible.value ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.white,
                     ),
                   ),
-                ],
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.r),
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      )
+                  ),
+
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.r),
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      )
+                  ),
+                ),
               ),
             ),
+
+            // Container(
+            //   height: 45.h,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(30.r),
+            //       border: Border.all(
+            //           width: 0.3,
+            //           color: Colors.white
+            //       )
+            //   ),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [
+            //       Container(
+            //         height: 45.sp,
+            //         width: 45.sp,
+            //         decoration: BoxDecoration(
+            //           color: Colors.white,
+            //           shape: BoxShape.circle,
+            //         ),
+            //         child: Icon(
+            //           Icons.lock_outline,
+            //           size: 16,
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: SizedBox(
+            //           height: 30.sp,
+            //           child: Obx(()=>
+            //             TextFormField(
+            //               controller: controller.passwordController,
+            //               obscureText: !controller.isVisible.value,
+            //               style: TextStyle(
+            //                 fontSize: 14.sp,
+            //                 color: Colors.white,
+            //                 letterSpacing: 3,
+            //               ),
+            //               decoration: InputDecoration(
+            //
+            //                 border: InputBorder.none,
+            //                 hintText: "Password",
+            //                 hintStyle: TextStyle(
+            //                   fontSize: 14.sp,
+            //                   color: Colors.white,
+            //                   fontWeight: FontWeight.w300,
+            //                 ),
+            //                 contentPadding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 8.sp),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //
+            //       GestureDetector(
+            //         onTap: (){
+            //           controller.isVisible.value =! controller.isVisible.value;
+            //         },
+            //         child: Obx(()=>
+            //           Padding(
+            //             padding: EdgeInsets.only(right: 15.w),
+            //             child: Icon(
+            //               controller.isVisible.value ? Icons.visibility : Icons.visibility_off,
+            //               size: 18,
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
 
             SizedBox(height: 40.h,),
 

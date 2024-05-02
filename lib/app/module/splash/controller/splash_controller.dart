@@ -18,7 +18,7 @@ class SplashController extends GetxController{
     var token = sharedPreferences.getString(AppConstant.TOKEN);
     if(token != null && token != ""){
       Future.delayed(Duration(milliseconds: 2000),(){
-        Get.offAllNamed(RouteName.home);
+        Get.offAllNamed(RouteName.dashboard);
       });
     }
     else {

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:srmm/app/module/splash/view/splash_view.dart';
+import 'package:srmm/app/utils/app_color.dart';
 
 import 'app/route/pages.dart';
 
@@ -28,8 +29,8 @@ class MyApp extends StatelessWidget {
           title: 'School App Admin',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
+            scaffoldBackgroundColor: AppColor.testBackgroundColor,
+            brightness: Brightness.dark,
           ),
           getPages: AppPages.routes,
           home: SplashView(),

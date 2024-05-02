@@ -6,7 +6,7 @@ import 'package:srmm/app/widget/text/small_text.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback onPress;
   final String title;
-  final bool isLoading;
+  final bool? isLoading;
   Color? buttonColor;
   double? height;
   double? width;
@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.onPress,
     required this.title,
-    required this.isLoading,
+    this.isLoading = false,
     this.buttonColor = Colors.white,
     this.width = 100,
     this.height = 40
@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
           color: buttonColor,
         ),
-        child: isLoading
+        child: isLoading!
             ? Center(child: CircularProgressIndicator())
             : Center(
                 child: SmallText(

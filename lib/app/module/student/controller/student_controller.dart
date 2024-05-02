@@ -29,6 +29,9 @@ class StudentController extends GetxController{
   final nidController = TextEditingController();
   final addressController = TextEditingController();
 
+  final RxBool sortAscending = true.obs;
+  final RxInt sortColumnIndex = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -90,6 +93,26 @@ class StudentController extends GetxController{
       log(e.toString());
       isLoading.value = false;
       print(stackTrace);
+    }
+  }
+
+  void sortStudentsBy(String columnKey, bool ascending) {
+    sortAscending.value = ascending;
+
+    switch (columnKey) {
+      case 'id':
+        studentList.sort((a, b) => ascending ? a.id!.compareTo(b.id!) : b.id!.compareTo(a.id!));
+        break;
+      case 'name':
+        studentList.sort((a, b) => ascending ? a.name!.compareTo(b.name!) : b.name!.compareTo(a.name!));
+        break;
+      case 'age':
+        studentList.sort((a, b) => ascending ? (a.age ?? 0).compareTo(b.age ?? 0) : (b.age ?? 0).compareTo(a.age ?? 0));
+        break;
+    // Add more cases for additional columns if needed
+      default:
+      // Do nothing or handle error
+        break;
     }
   }
 

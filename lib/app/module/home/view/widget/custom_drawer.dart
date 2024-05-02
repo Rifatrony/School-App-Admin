@@ -54,7 +54,7 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.pop(context);
               },
               title: "Home",
-              image: AppImage.homeIcon,
+              image:  AppImage.homeIcon,
             ),
 
             Divider(
